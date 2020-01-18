@@ -4,9 +4,9 @@ library(tidyr)
 pop_can <- read.csv("pop_can.csv")
 income_can <- read.csv("income_can.csv")
 
-colnames(pop_can) # "Ã¯..Geography" "X2012" "X2013" "X2014"  "X2015" "X2016" 
+colnames(pop_can) # "ï..Geography" "X2012" "X2013" "X2014"  "X2015" "X2016" 
 
-colnames(income_can) # "Ã¯..Geography" "X2012" "X2013" "X2014"  "X2015" "X2016"
+colnames(income_can) # "ï..Geography" "X2012" "X2013" "X2014"  "X2015" "X2016"
 
 # Rename the columns to improve readability
 
@@ -34,6 +34,20 @@ l_pop_can$population <- as.numeric(l_pop_can$population) # Change from character
 # Now we can merge the income and population data sets by region and year
 
 final_data <- merge(l_pop_can, l_income_can, by = c("Region", "year"))
+
+# Create column for region type (Canada as a whole or province/territory)
+
+final_data$RegionType <- rep(NA, nrow(final_data))
+
+for (i in 1:nrow(final_data)){
+  if (final_data$Region[i] == "Canada"){
+    final_data$RegionType[i] <- "Country"}
+  else {final_data$RegionType[i] <- "ProvTerr"}
+}
+
+# Multiply population column by 1000
+
+final_data$population <- final_data$population*1000
 
 # Save final_data as .csv. Will be used in seperate server.R and ui.R files to make the Shinydashboard app
 

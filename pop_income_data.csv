@@ -1,71 +1,71 @@
-"Region","year","population","income"
-"Alberta","y2012",3880.8,52669.6
-"Alberta","y2013",3998,54653.3
-"Alberta","y2014",4108.4,56510.3
-"Alberta","y2015",4177.5,57909.1
-"Alberta","y2016",4236.4,54260.8
-"British Columbia","y2012",4546.3,40619.9
-"British Columbia","y2013",4590.1,42152.4
-"British Columbia","y2014",4646.5,43292.7
-"British Columbia","y2015",4694.7,45411.2
-"British Columbia","y2016",4757.7,46905
-"Canada","y2012",34750.5,41462
-"Canada","y2013",35152.4,42666.1
-"Canada","y2014",35535.3,43781.5
-"Canada","y2015",35832.5,45512.7
-"Canada","y2016",36264.6,45970.7
-"Manitoba","y2012",1250.3,37641.6
-"Manitoba","y2013",1265.6,38822.3
-"Manitoba","y2014",1280.9,39557.8
-"Manitoba","y2015",1295.4,41466.8
-"Manitoba","y2016",1318.1,41890.1
-"New Brunswick","y2012",756.8,36693.8
-"New Brunswick","y2013",755.7,37724.8
-"New Brunswick","y2014",754.7,38908.2
-"New Brunswick","y2015",753.9,40007
-"New Brunswick","y2016",757.4,41602.4
-"Newfoundland and Labrador","y2012",526.5,41420.8
-"Newfoundland and Labrador","y2013",527.4,43449.1
-"Newfoundland and Labrador","y2014",528.4,44933.1
-"Newfoundland and Labrador","y2015",528.8,46604.2
-"Newfoundland and Labrador","y2016",530.3,47589.6
-"Northwest territories","y2012",43.6,57439.1
-"Northwest territories","y2013",43.8,60128.4
-"Northwest territories","y2014",43.9,61891.6
-"Northwest territories","y2015",44.2,64594.9
-"Northwest territories","y2016",44.6,65064.9
-"Nova Scotia","y2012",944.9,37442.5
-"Nova Scotia","y2013",943,38658.6
-"Nova Scotia","y2014",942.2,39732.2
-"Nova Scotia","y2015",941.5,41036.8
-"Nova Scotia","y2016",948.6,41826.1
-"Nunavut","y2012",34.7,40827.5
-"Nunavut","y2013",35.4,41113.7
-"Nunavut","y2014",36.1,42227
-"Nunavut","y2015",36.6,43433.1
-"Nunavut","y2016",37.2,44920.2
-"Ontario","y2012",13413.7,41169.1
-"Ontario","y2013",13555.8,42147.9
-"Ontario","y2014",13680.4,43134
-"Ontario","y2015",13789.6,45053.7
-"Ontario","y2016",13976.3,46047.5
-"Prince Edward Island","y2012",145.1,35518.3
-"Prince Edward Island","y2013",145.2,36260.8
-"Prince Edward Island","y2014",145.9,37199.7
-"Prince Edward Island","y2015",146.8,38265.3
-"Prince Edward Island","y2016",149.5,39505.7
-"Quebec","y2012",8085.9,38149.8
-"Quebec","y2013",8151.3,38867.9
-"Quebec","y2014",8210.5,39865.3
-"Quebec","y2015",8254.9,41191.7
-"Quebec","y2016",8321.9,42200.8
-"Saskatchewan","y2012",1086,43554.5
-"Saskatchewan","y2013",1104.8,45818.1
-"Saskatchewan","y2014",1120.6,45901.5
-"Saskatchewan","y2015",1131.2,48070.5
-"Saskatchewan","y2016",1148.6,47258.9
-"Yukon","y2012",36.1,54856.1
-"Yukon","y2013",36.3,55430.1
-"Yukon","y2014",36.8,56414.2
-"Yukon","y2015",37.3,58355
-"Yukon","y2016",38.1,59365.6
+"Region","year","population","income","RegionType"
+"Alberta","y2012",3880800,52669.6,"ProvTerr"
+"Alberta","y2013",3998000,54653.3,"ProvTerr"
+"Alberta","y2014",4108400,56510.3,"ProvTerr"
+"Alberta","y2015",4177500,57909.1,"ProvTerr"
+"Alberta","y2016",4236400,54260.8,"ProvTerr"
+"British Columbia","y2012",4546300,40619.9,"ProvTerr"
+"British Columbia","y2013",4590100,42152.4,"ProvTerr"
+"British Columbia","y2014",4646500,43292.7,"ProvTerr"
+"British Columbia","y2015",4694700,45411.2,"ProvTerr"
+"British Columbia","y2016",4757700,46905,"ProvTerr"
+"Canada","y2012",34750500,41462,"Country"
+"Canada","y2013",35152400,42666.1,"Country"
+"Canada","y2014",35535300,43781.5,"Country"
+"Canada","y2015",35832500,45512.7,"Country"
+"Canada","y2016",36264600,45970.7,"Country"
+"Manitoba","y2012",1250300,37641.6,"ProvTerr"
+"Manitoba","y2013",1265600,38822.3,"ProvTerr"
+"Manitoba","y2014",1280900,39557.8,"ProvTerr"
+"Manitoba","y2015",1295400,41466.8,"ProvTerr"
+"Manitoba","y2016",1318100,41890.1,"ProvTerr"
+"New Brunswick","y2012",756800,36693.8,"ProvTerr"
+"New Brunswick","y2013",755700,37724.8,"ProvTerr"
+"New Brunswick","y2014",754700,38908.2,"ProvTerr"
+"New Brunswick","y2015",753900,40007,"ProvTerr"
+"New Brunswick","y2016",757400,41602.4,"ProvTerr"
+"Newfoundland and Labrador","y2012",526500,41420.8,"ProvTerr"
+"Newfoundland and Labrador","y2013",527400,43449.1,"ProvTerr"
+"Newfoundland and Labrador","y2014",528400,44933.1,"ProvTerr"
+"Newfoundland and Labrador","y2015",528800,46604.2,"ProvTerr"
+"Newfoundland and Labrador","y2016",530300,47589.6,"ProvTerr"
+"Northwest territories","y2012",43600,57439.1,"ProvTerr"
+"Northwest territories","y2013",43800,60128.4,"ProvTerr"
+"Northwest territories","y2014",43900,61891.6,"ProvTerr"
+"Northwest territories","y2015",44200,64594.9,"ProvTerr"
+"Northwest territories","y2016",44600,65064.9,"ProvTerr"
+"Nova Scotia","y2012",944900,37442.5,"ProvTerr"
+"Nova Scotia","y2013",943000,38658.6,"ProvTerr"
+"Nova Scotia","y2014",942200,39732.2,"ProvTerr"
+"Nova Scotia","y2015",941500,41036.8,"ProvTerr"
+"Nova Scotia","y2016",948600,41826.1,"ProvTerr"
+"Nunavut","y2012",34700,40827.5,"ProvTerr"
+"Nunavut","y2013",35400,41113.7,"ProvTerr"
+"Nunavut","y2014",36100,42227,"ProvTerr"
+"Nunavut","y2015",36600,43433.1,"ProvTerr"
+"Nunavut","y2016",37200,44920.2,"ProvTerr"
+"Ontario","y2012",13413700,41169.1,"ProvTerr"
+"Ontario","y2013",13555800,42147.9,"ProvTerr"
+"Ontario","y2014",13680400,43134,"ProvTerr"
+"Ontario","y2015",13789600,45053.7,"ProvTerr"
+"Ontario","y2016",13976300,46047.5,"ProvTerr"
+"Prince Edward Island","y2012",145100,35518.3,"ProvTerr"
+"Prince Edward Island","y2013",145200,36260.8,"ProvTerr"
+"Prince Edward Island","y2014",145900,37199.7,"ProvTerr"
+"Prince Edward Island","y2015",146800,38265.3,"ProvTerr"
+"Prince Edward Island","y2016",149500,39505.7,"ProvTerr"
+"Quebec","y2012",8085900,38149.8,"ProvTerr"
+"Quebec","y2013",8151300,38867.9,"ProvTerr"
+"Quebec","y2014",8210500,39865.3,"ProvTerr"
+"Quebec","y2015",8254900,41191.7,"ProvTerr"
+"Quebec","y2016",8321900,42200.8,"ProvTerr"
+"Saskatchewan","y2012",1086000,43554.5,"ProvTerr"
+"Saskatchewan","y2013",1104800,45818.1,"ProvTerr"
+"Saskatchewan","y2014",1120600,45901.5,"ProvTerr"
+"Saskatchewan","y2015",1131200,48070.5,"ProvTerr"
+"Saskatchewan","y2016",1148600,47258.9,"ProvTerr"
+"Yukon","y2012",36100,54856.1,"ProvTerr"
+"Yukon","y2013",36300,55430.1,"ProvTerr"
+"Yukon","y2014",36800,56414.2,"ProvTerr"
+"Yukon","y2015",37300,58355,"ProvTerr"
+"Yukon","y2016",38100,59365.6,"ProvTerr"
