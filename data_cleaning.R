@@ -49,6 +49,20 @@ for (i in 1:nrow(final_data)){
 
 final_data$population <- final_data$population*1000
 
+typeof(final_data$Region) # "integer"
+final_data$Region <- as.character(final_data$Region)
+typeof(final_data$Region) # "character"
+
+typeof(final_data$year) # "integer"
+final_data$year <- as.character(final_data$year)
+typeof(final_data$year) # "character"
+
+typeof(final_data$population) # "double"
+
+typeof(final_data$income) # "double"
+
+typeof(final_data$RegionType) # "character"
+
 # Save final_data as .csv. Will be used in seperate server.R and ui.R files to make the Shinydashboard app
 
 write.csv(x = final_data, file = "pop_income_data.csv", row.names = FALSE)
