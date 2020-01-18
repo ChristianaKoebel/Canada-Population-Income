@@ -4,9 +4,9 @@ library(tidyr)
 pop_can <- read.csv("pop_can.csv")
 income_can <- read.csv("income_can.csv")
 
-colnames(pop_can) # "ï..Geography" "X2012" "X2013" "X2014"  "X2015" "X2016" 
+colnames(pop_can) # "Ã¯..Geography" "X2012" "X2013" "X2014"  "X2015" "X2016" 
 
-colnames(income_can) # "ï..Geography" "X2012" "X2013" "X2014"  "X2015" "X2016"
+colnames(income_can) # "Ã¯..Geography" "X2012" "X2013" "X2014"  "X2015" "X2016"
 
 # Rename the columns to improve readability
 
