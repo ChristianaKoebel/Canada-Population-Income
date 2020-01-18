@@ -1,0 +1,36 @@
+library(dplyr)
+library(tidyr)
+
+pop_can <- read.csv("pop_can.csv")
+income_can <- read.csv("income_can.csv")
+
+colnames(pop_can) # "ï..Geography" "X2012" "X2013" "X2014"  "X2015" "X2016" 
+
+colnames(income_can) # "ï..Geography" "X2012" "X2013" "X2014"  "X2015" "X2016"
+
+# Rename the columns to improve readability
+
+colnames(pop_can) <- c("Region", "y2012", "y2013", "y2014", "y2015", "y2016")
+colnames(income_can) <- c("Region", "y2012", "y2013", "y2014", "y2015", "y2016")
+
+# Next, we need to convert the data frames from wide form to long form in order to 
+#   create columns for year, population, and household income per capita 
+
+l_pop_can <- gather(pop_can, year, population, y2012:y2016, factor_key = TRUE)
+colnames(l_pop_can) # "Region" "year" "population"
+
+l_income_can <- gather(income_can, year, income, y2012:y2016, factor_key = TRUE)
+colnames(l_income_can) # "Region" "year" "income"
+
+# In the population and income per capita columns, values contain commas; these need to be removed.
+#   Use the 'gsub' function to do this
+
+l_income_can$income <- gsub(",", "", l_income_can$income)
+l_pop_can$population <- gsub(",", "", l_pop_can$population)
+
+l_income_can$income <- as.numeric(l_income_can$income) # Change from character to number
+l_pop_can$population <- as.numeric(l_pop_can$population) # Change from character to number
+
+# Now we can merge the income and population data sets by region and year
+
+final_data <- merge(l_pop_can, l_income_can, by = c("Region", "year"))
