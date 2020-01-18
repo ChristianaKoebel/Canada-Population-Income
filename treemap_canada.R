@@ -34,3 +34,7 @@ l_pop_can$population <- as.numeric(l_pop_can$population) # Change from character
 # Now we can merge the income and population data sets by region and year
 
 final_data <- merge(l_pop_can, l_income_can, by = c("Region", "year"))
+
+# Save final_data as .csv. Will be used in seperate server.R and ui.R files to make the Shinydashboard app
+
+write.csv(x = final_data, file = "pop_income_data.csv", row.names = FALSE)
