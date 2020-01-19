@@ -76,9 +76,8 @@ dashboardPage(
                                       examine the ... .", br(), br(), "Select a year to view
                                       the ... .",
                                       br(), br(),
-                                      "In each level, larger rectangles represent larger
-                                      populations, and darker colours represent higher household income per capita.
-                                      The first level shows Canada as a whole and the second level shows each province and territory.", 
+                                      "Larger rectangles represent larger
+                                      populations, and darker colours represent higher household income per capita.", 
                                       
                                       style = "font-size:16px;")),
                            
@@ -93,13 +92,11 @@ dashboardPage(
                                   box(width = NULL, status = "primary",
                                       div(selectInput(inputId = "YearInput", label = "Select Year",
                                                       
-                                                      choices = c("y2012", "y2013", "y2014", 
-                                                                  "y2015", "y2016")), style = "font-size: 16px;"))),
+                                                      choices = c("2012", "2013", "2014", 
+                                                                  "2015", "2016")), style = "font-size: 16px;"))),
                            
                            column(width = 10,
-                                  box(tags$p("Hover over a province/territory for more information.", br(), "Left-click
-                                             to view the provinces and territories.", br(),
-                                             "Left-click on the button in the top left corner of the treemap to return to the previous level.", br(),
+                                  box(tags$p("Hover over a province/territory for more information.", br(),
                                              "Darker colours represent higher household income per capita and
                                              larger rectangles represent larger populations.", 
                                              
