@@ -16,52 +16,38 @@ colnames(income_can) <- c("Region", "y2012", "y2013", "y2014", "y2015", "y2016")
 # Next, we need to convert the data frames from wide form to long form in order to 
 #   create columns for year, population, and household income per capita 
 
-l_pop_can <- gather(pop_can, year, population, y2012:y2016, factor_key = TRUE)
-colnames(l_pop_can) # "Region" "year" "population"
+l_pop_can <- reshape(pop_can, direction = "long",
+                     varying = list(names(pop_can)[2:6]),
+                     v.names = "Population", timevar = "Year", idvar = "Region",
+                     times = 2012:2016, new.row.names = NULL)
+rownames(l_pop_can) <- NULL
 
-l_income_can <- gather(income_can, year, income, y2012:y2016, factor_key = TRUE)
-colnames(l_income_can) # "Region" "year" "income"
+l_income_can <- reshape(income_can, direction = "long",
+                        varying = list(names(income_can)[2:6]),
+                        v.names = "Income", timevar = "Year", idvar = "Region",
+                        times = 2012:2016, new.row.names = NULL)
+rownames(l_income_can) <- NULL
 
 # In the population and income per capita columns, values contain commas; these need to be removed.
 #   Use the 'gsub' function to do this
 
-l_income_can$income <- gsub(",", "", l_income_can$income)
-l_pop_can$population <- gsub(",", "", l_pop_can$population)
-
-l_income_can$income <- as.numeric(l_income_can$income) # Change from character to number
-l_pop_can$population <- as.numeric(l_pop_can$population) # Change from character to number
+l_income_can$Income <- gsub(",", "", l_income_can$Income)
+l_pop_can$Population <- gsub(",", "", l_pop_can$Population)
 
 # Now we can merge the income and population data sets by region and year
 
-final_data <- merge(l_pop_can, l_income_can, by = c("Region", "year"))
-
-# Create column for region type (Canada as a whole or province/territory)
-
-final_data$RegionType <- rep(NA, nrow(final_data))
-
-for (i in 1:nrow(final_data)){
-  if (final_data$Region[i] == "Canada"){
-    final_data$RegionType[i] <- "Country"}
-  else {final_data$RegionType[i] <- "ProvTerr"}
-}
+final_data <- merge(l_pop_can, l_income_can, by = c("Region", "Year"))
 
 # Multiply population column by 1000
 
-final_data$population <- final_data$population*1000
+final_data$Population <- as.numeric(final_data$Population)
+final_data$Population <- final_data$Population*1000
 
-typeof(final_data$Region) # "integer"
+# Remove rows with Region == "Canada" since we want to compare provinces/territories
+
 final_data$Region <- as.character(final_data$Region)
-typeof(final_data$Region) # "character"
 
-typeof(final_data$year) # "integer"
-final_data$year <- as.character(final_data$year)
-typeof(final_data$year) # "character"
-
-typeof(final_data$population) # "double"
-
-typeof(final_data$income) # "double"
-
-typeof(final_data$RegionType) # "character"
+final_data <- subset(final_data, Region != "Canada")
 
 # Save final_data as .csv. Will be used in seperate server.R and ui.R files to make the Shinydashboard app
 
