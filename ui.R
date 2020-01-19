@@ -73,11 +73,13 @@ dashboardPage(
                                            style = "font-size:20px; font-weight: bold;"),
                                
                                tags$p("This interactive tool allows users to
-                                      examine the ... .", br(), br(), "Select a year to view
-                                      the ... .",
+                                      examine the population and household income per 
+                                      capita for each province/territory from 2012 to 2016.",
                                       br(), br(),
-                                      "Larger rectangles represent larger
-                                      populations, and darker colours represent higher household income per capita.", 
+                                      "The population and household income per capita for each province/territory 
+                                      are easily compared through the use of a treemap. Rectangle size represents 
+                                      population, and colour represents income; larger rectangles indicate larger populations 
+                                      and darker colour indicates higher household income per capita.", 
                                       
                                       style = "font-size:16px;")),
                            
