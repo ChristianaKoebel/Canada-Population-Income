@@ -1,6 +1,6 @@
 # RShiny-Treemap
 
-This is a simple Shiny app that visualizes population and household income per capita for Canada's thirteen provinces and territories in an interactive dashboard. 
+This is an R Shiny app that visualizes population and household income per capita for Canada's thirteen provinces and territories in an interactive dashboard. 
 
 The data used in the app comes from Statistics Canada 'Table 36-10-0229-01 Long-run provincial and territorial data' (https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3610022901) and consists of estimates of economic variables including population and average household income in Canada from 2012 to 2016.
 
