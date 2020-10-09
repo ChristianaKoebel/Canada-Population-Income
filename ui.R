@@ -5,6 +5,7 @@ library(dplyr)
 library(tidyverse)
 library(htmltools)
 library(htmlwidgets)
+library(leaflet)
 library(data.table)
 library(DT)
 library(googleVis)
@@ -15,7 +16,7 @@ pop_income_data <- read.csv(file = "pop_income_data.csv")
 
 dashboardPage(
   
-  skin = "purple",
+  skin = "red",
   
   dashboardHeader(
     
@@ -42,9 +43,21 @@ dashboardPage(
                  
                  #tree {height: calc(100vh - 80px) !important;}
                  
+                 # map1 {height: calc(100vh - 80px) !important;}
+                 
+                 # map2 {height: calc(100vh - 80px) !important;}
+                 
                  "),
       
       tags$style('
+      
+                 .leaflet-popup-content-wrapper {
+                  font-size: 15px;
+                  width: 500px;
+                }
+
+                 .leaflet-popup-content {
+                 width: 450px !important;}
                  
                  .legend {
                  border-left:2px solid #666666;
@@ -67,42 +80,91 @@ dashboardPage(
                          
                          fluidRow(
                            
-                           box(status = "primary", width = 12, 
+                           box(status = "danger", width = 12, 
                                
-                               title = div("Title", 
+                               title = div("Provincial Population and Household Income per Capita", 
                                            style = "font-size:20px; font-weight: bold;"),
                                
                                tags$p("This interactive tool allows users to
-                                      examine the population and household income per 
-                                      capita for each province/territory from 2012 to 2016.",
+                                      examine and compare population and household income per 
+                                      capita for each province or territory in Canada from 1999 to 2016.",
                                       br(), br(),
-                                      "The population and household income per capita for each province/territory 
-                                      are easily compared through the use of a treemap. Rectangle size represents 
-                                      population, and colour represents income; larger rectangles indicate larger populations 
-                                      and darker colour indicates higher household income per capita.", 
-                                      
+                                      "In the second tab (Map: Population and Household Income Growth in Canada), 
+                                      select two years to see the change in population and household income by province/territory.
+                                      Darker and larger circles on the map represent higher rates of change.",
+                                      br(), br(),
+                                      "In the third tab, population and household income per capita for 
+                                      each province or territory are easily compared through the use of a treemap. 
+                                      Rectangle size represents population, and colour represents income; 
+                                      larger rectangles indicate larger populations 
+                                      and darker colour indicates higher household income per capita.",
                                       style = "font-size:16px;")),
                            
                            )),
                 
-                tabPanel(div("Treemap: Population and Household Income per Capita in Canada", style = "font-size: 16px;"),
+                tabPanel(div("Map: Population and Household Income Growth in Canada", style = "font-size: 16px;"),
                          
                          fluidRow(
                            
                            column(width = 2,
                                   
-                                  box(width = NULL, status = "primary",
+                                  box(width = NULL, status = "danger",
+                                      
                                       div(selectInput(inputId = "YearInput", label = "Select Year",
                                                       
-                                                      choices = c("2012", "2013", "2014", 
-                                                                  "2015", "2016")), style = "font-size: 16px;"))),
+                                                      choices = unique(pop_income_data["Year"]),
+                                                      
+                                                      selected = unique(pop_income_data["Year"])[[1]][1]), style = "font-size: 17px;")),
+                                      
+                                  
+                                  box(width = NULL, status = "danger",
+                                      
+                                      div(selectInput(inputId = "YearInput2", label = "Select Another Year",
+                                                      
+                                                      choices = unique(pop_income_data["Year"]),
+                                                      
+                                                      selected = unique(pop_income_data["Year"])[[1]][2]), style = "font-size: 17px;"),
+                                      
+                                  )
+                           ),
+                           column(width = 10,
+                                  box(tags$p("Hover over a province/territory for more information.", br(),
+                                             "Darker and larger circles represent higher growth rates in population.", 
+                                             
+                                             style = "font-size:16px;"), width = NULL, status = "danger",
+                                      
+                                      solidHeader = FALSE, leafletOutput("map1", width = '100%')),
+                                  
+                                  box(title = tags$p("Hover over a province/territory for more information.", br(),
+                                                     "Darker and larger circles represent higher growth rates in household income per capita.",
+                                                     
+                                             style = "font-size:16px;"), width = NULL, status = "danger",
+                                      
+                                      solidHeader = FALSE, leafletOutput("map2", width = '100%'))
+                           ))),
+                
+                
+                tabPanel(div("Treemap: Comparing Population and Household Income in Canada", style = "font-size: 16px;"),
+                         
+                         fluidRow(
+                           
+                           column(width = 2,
+                                  
+                                  box(width = NULL, status = "danger",
+                                      
+                                      div(selectInput(inputId = "YearInput3", label = "Select Year",
+                                                      
+                                                      choices = unique(pop_income_data["Year"]),
+                                                      
+                                                      selected = unique(pop_income_data["Year"])[[1]][1]), style = "font-size: 17px;"))),
                            
                            column(width = 10,
                                   box(tags$p("Hover over a province/territory for more information.", br(),
                                              "Darker colours represent higher household income per capita and
-                                             larger rectangles represent larger populations.", 
+                                             larger rectangles represent larger populations.", br(),
+                                             "Scroll down to view the output data in table form.", 
                                              
-                                             style = "font-size:16px;"), width = NULL, status = "primary",
+                                             style = "font-size:16px;"), width = NULL, status = "danger",
                                       
                                       solidHeader = FALSE, highchartOutput("tree")),
                                   
