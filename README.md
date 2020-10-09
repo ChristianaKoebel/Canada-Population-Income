@@ -1,4 +1,4 @@
-# RShiny-Treemap
+# R Shiny-Population and Household Income per Capita in Canada
 
 This is an R Shiny app that visualizes population and household income per capita for Canada's thirteen provinces and territories in an interactive dashboard. 
 
