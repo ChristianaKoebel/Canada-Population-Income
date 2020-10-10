@@ -11,8 +11,18 @@ library(DT)
 library(googleVis)
 library(highcharter)
 library(RColorBrewer)
+library(rgdal)
+library(sf)
+
+can_prov <- rgdal::readOGR("canada_provinces.geojson")
+
+can_prov$PRENAME <- as.character(can_prov$PRENAME)
 
 pop_income_data <- read.csv(file = "pop_income_data.csv")
+
+pop_income_data$Region <- as.character(pop_income_data$Region)
+
+pop_income_data$Region[pop_income_data$Region == "Northwest territories"] <- "Northwest Territories"
 
 function(input, output){
   
@@ -69,34 +79,36 @@ function(input, output){
       mutate(pop_growth = round((pop2 -pop1)/(pop1)*100, 2),
              inc_growth = round((inc2 -inc1)/(inc1)*100, 2)) %>%
       
-      mutate(latitude = case_when(Region == "Alberta" ~ 55.000000, 
-                                  Region == "British Columbia" ~ 53.726669,
-                                  Region == "Manitoba" ~ 56.415211,
-                                  Region == "New Brunswick" ~ 46.498390,
-                                  Region == "Newfoundland and Labrador" ~ 53.135509,
-                                  Region == "Northwest territories" ~ 62.453972,
-                                  Region == "Nova Scotia" ~ 45.000000,
-                                  Region == "Nunavut" ~ 63.746693,
-                                  Region == "Ontario" ~ 50.000000,
-                                  Region == "Prince Edward Island" ~ 46.250000,
-                                  Region == "Quebec" ~ 53.000000,
-                                  Region == "Saskatchewan" ~ 55.000000,
-                                  Region == "Yukon" ~ 60.7212,
-                                  TRUE ~ NA_real_),
-             longitude = case_when(Region == "Alberta" ~ -115.000000, 
-                                   Region == "British Columbia" ~ -127.647621,
-                                   Region == "Manitoba" ~ -98.739075,
-                                   Region == "New Brunswick" ~ -66.159668,
-                                   Region == "Newfoundland and Labrador" ~ -57.660435,
-                                   Region == "Northwest territories" ~ -114.371788,
-                                   Region == "Nova Scotia" ~ -63.000000,
-                                   Region == "Nunavut" ~ -68.516968,
-                                   Region == "Ontario" ~ -85.000000,
-                                   Region == "Prince Edward Island" ~ -63.000000,
-                                   Region == "Quebec" ~ -70.000000,
-                                   Region == "Saskatchewan" ~ -106.000000,
-                                   Region == "Yukon" ~ 135.0568,
-                                   TRUE ~ NA_real_))
+      # mutate(latitude = case_when(Region == "Alberta" ~ 55.000000, 
+      #                             Region == "British Columbia" ~ 53.726669,
+      #                             Region == "Manitoba" ~ 56.415211,
+      #                             Region == "New Brunswick" ~ 46.498390,
+      #                             Region == "Newfoundland and Labrador" ~ 53.135509,
+      #                             Region == "Northwest Territories" ~ 62.453972,
+      #                             Region == "Nova Scotia" ~ 45.000000,
+      #                             Region == "Nunavut" ~ 63.746693,
+      #                             Region == "Ontario" ~ 50.000000,
+      #                             Region == "Prince Edward Island" ~ 46.250000,
+      #                             Region == "Quebec" ~ 53.000000,
+      #                             Region == "Saskatchewan" ~ 55.000000,
+      #                             Region == "Yukon" ~ 60.7212,
+      #                             TRUE ~ NA_real_),
+      #        longitude = case_when(Region == "Alberta" ~ -115.000000, 
+      #                              Region == "British Columbia" ~ -127.647621,
+      #                              Region == "Manitoba" ~ -98.739075,
+      #                              Region == "New Brunswick" ~ -66.159668,
+      #                              Region == "Newfoundland and Labrador" ~ -57.660435,
+      #                              Region == "Northwest Territories" ~ -114.371788,
+      #                              Region == "Nova Scotia" ~ -63.000000,
+      #                              Region == "Nunavut" ~ -68.516968,
+      #                              Region == "Ontario" ~ -85.000000,
+      #                              Region == "Prince Edward Island" ~ -63.000000,
+      #                              Region == "Quebec" ~ -70.000000,
+      #                              Region == "Saskatchewan" ~ -106.000000,
+      #                              Region == "Yukon" ~ 135.0568,
+      #                              TRUE ~ NA_real_)) %>%
+      merge(can_prov, ., by.x = "PRENAME", 
+            by.y = "Region", duplicateGeoms = TRUE)
     
   })
   
