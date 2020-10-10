@@ -1,18 +1,20 @@
-library(shiny)
-library(shinydashboard)
-require(devtools)
-library(dplyr)
-library(tidyverse)
-library(htmltools)
-library(htmlwidgets)
-library(leaflet)
 library(data.table)
 library(DT)
 library(googleVis)
 library(highcharter)
 library(RColorBrewer)
+library(rgdal)
+library(sf)
+
+can_prov <- rgdal::readOGR("canada_provinces.geojson")
+
+can_prov$PRENAME <- as.character(can_prov$PRENAME)
 
 pop_income_data <- read.csv(file = "pop_income_data.csv")
+
+pop_income_data$Region <- as.character(pop_income_data$Region)
+
+pop_income_data$Region[pop_income_data$Region == "Northwest territories"] <- "Northwest Territories"
 
 dashboardPage(
   
