@@ -89,10 +89,10 @@ function(input, output){
     
       addTiles() %>%
       
-      addPolygons(stroke = FALSE, smoothFactor = 0.3, weight = 2, opacity = 1, color = "white", 
+      addPolygons(smoothFactor = 0.3, weight = 2, opacity = 1, color = "white", 
                   dashArray = "3", fillOpacity = 0.7,
                   highlight = highlightOptions(
-                    weight = 5,
+                    weight = 2,
                     color = "#666",
                     dashArray = "",
                     fillOpacity = 0.7,
@@ -115,10 +115,10 @@ function(input, output){
       
       addTiles() %>%
       
-      addPolygons(stroke = FALSE, smoothFactor = 0.3, weight = 2, opacity = 1, color = "white", 
+      addPolygons(smoothFactor = 0.3, weight = 2, opacity = 1, color = "white", 
                   dashArray = "3", fillOpacity = 0.7,
                   highlight = highlightOptions(
-                    weight = 5,
+                    weight = 2,
                     color = "#666",
                     dashArray = "",
                     fillOpacity = 0.7,
