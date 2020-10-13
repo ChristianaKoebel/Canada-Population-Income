@@ -1,3 +1,11 @@
+library(shiny)
+library(shinydashboard)
+require(devtools)
+library(dplyr)
+library(tidyverse)
+library(htmltools)
+library(htmlwidgets)
+library(leaflet)
 library(data.table)
 library(DT)
 library(googleVis)
@@ -55,11 +63,11 @@ dashboardPage(
       
                  .leaflet-popup-content-wrapper {
                   font-size: 15px;
-                  width: 500px;
+                  width: 300px;
                 }
 
                  .leaflet-popup-content {
-                 width: 450px !important;}
+                 width: 350px !important;}
                  
                  .legend {
                  border-left:2px solid #666666;
@@ -93,7 +101,7 @@ dashboardPage(
                                       br(), br(),
                                       "In the second tab (Map: Population and Household Income Growth in Canada), 
                                       select two years to see the change in population and household income by province/territory.
-                                      Darker and larger circles on the map represent higher rates of change.",
+                                      Darker colours on the map represent higher rates of change.",
                                       br(), br(),
                                       "In the third tab, population and household income per capita for 
                                       each province or territory are easily compared through the use of a treemap. 
@@ -131,14 +139,14 @@ dashboardPage(
                            ),
                            column(width = 10,
                                   box(tags$p("Hover over a province/territory for more information.", br(),
-                                             "Darker and larger circles represent higher growth rates in population.", 
+                                             "Darker colours represent higher growth rates in population.", 
                                              
                                              style = "font-size:16px;"), width = NULL, status = "danger",
                                       
                                       solidHeader = FALSE, leafletOutput("map1", width = '100%')),
                                   
                                   box(title = tags$p("Hover over a province/territory for more information.", br(),
-                                                     "Darker and larger circles represent higher growth rates in household income per capita.",
+                                                     "Darker colours represent higher growth rates in household income per capita.",
                                                      
                                              style = "font-size:16px;"), width = NULL, status = "danger",
                                       
