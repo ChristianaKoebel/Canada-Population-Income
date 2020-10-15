@@ -91,8 +91,8 @@ function(input, output){
         labs2 = lapply(seq(nrow(.)), function(i) {
           paste0("<b>", "Region: ", "</b>", .[i, "Region"], "</b><br/>", 
                 "<b>", "Income Growth Rate: ", "</b>", .[i, "inc_growth"], "%", "</b><br/>", 
-                "<b>", "Income in ", "</b>", "<b>", input$YearInput, "</b>", "<b>", ": ", "</b>", .[i, "inc1"], "</b><br/>", 
-                "<b>", "Income in ", "</b>", "<b>", input$YearInput2, "</b>", "<b>", ": ", "</b>", .[i, "inc2"], "</b><br/>")})) %>%
+                "<b>", "Income in ", "</b>", "<b>", input$YearInput, "</b>", "<b>", ": ", "</b>", "$", .[i, "inc1"], "</b><br/>", 
+                "<b>", "Income in ", "</b>", "<b>", input$YearInput2, "</b>", "<b>", ": ", "</b>", "$", .[i, "inc2"], "</b><br/>")})) %>%
              
       merge(can_prov, ., by.x = "PRENAME", 
             by.y = "Region", duplicateGeoms = TRUE)
