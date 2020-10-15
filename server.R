@@ -64,6 +64,10 @@ function(input, output){
   
   filtered2 <- reactive({
     
+    validate(
+      need(input$YearInput != input$YearInput2, "Please select two different years")
+    )
+    
     pop_income_data %>%
       
       filter(
@@ -78,6 +82,17 @@ function(input, output){
       
       mutate(pop_growth = round((pop2 -pop1)/(pop1)*100, 2),
              inc_growth = round((inc2 -inc1)/(inc1)*100, 2)) %>%
+      
+      mutate(labs1 = lapply(seq(nrow(.)), function(i) {
+        paste0("<b>", "Region: ", "</b>", .[i, "Region"], "</b><br/>", 
+              "<b>", "Population Growth Rate: ", "</b>", .[i, "pop_growth"], "%", "</b><br/>", 
+              "<b>", "Population in ", "</b>", "<b>", input$YearInput, "</b>", "<b>", ": ", "</b>", .[i, "pop1"], "</b><br/>", 
+              "<b>", "Population in ", "</b>", "<b>", input$YearInput2, "</b>", "<b>", ": ", "</b>", .[i, "pop2"], "</b><br/>")}),
+        labs2 = lapply(seq(nrow(.)), function(i) {
+          paste0("<b>", "Region: ", "</b>", .[i, "Region"], "</b><br/>", 
+                "<b>", "Income Growth Rate: ", "</b>", .[i, "inc_growth"], "%", "</b><br/>", 
+                "<b>", "Income in ", "</b>", "<b>", input$YearInput, "</b>", "<b>", ": ", "</b>", .[i, "inc1"], "</b><br/>", 
+                "<b>", "Income in ", "</b>", "<b>", input$YearInput2, "</b>", "<b>", ": ", "</b>", .[i, "inc2"], "</b><br/>")})) %>%
              
       merge(can_prov, ., by.x = "PRENAME", 
             by.y = "Region", duplicateGeoms = TRUE)
@@ -99,10 +114,7 @@ function(input, output){
                     bringToFront = TRUE),
                   fillColor = ~colorBin(palette = c(brewer.pal(6, "Oranges")[1], brewer.pal(6, "Oranges")[6]),
                                         domain = filtered2()$pop_growth)(pop_growth),
-                  popup = ~paste(sep = "", "<b>", "Region: ", "</b>", PRENAME, "</b><br/>", "<b>", "Population Growth Rate: ", "</b>",
-                                 pop_growth, "%", "</b><br/>", "<b>",
-                                 "Population in ", "</b>", "<b>", input$YearInput, "</b>", "<b>", ": ", "</b>", pop1, "</b><br/>", "<b>",
-                                 "Population in ", "</b>", "<b>", input$YearInput2, "</b>", "<b>", ": ", "</b>", pop2, "</b><br/>")) %>%
+                  label = lapply(filtered2()$labs1, htmltools::HTML)) %>%
       
       addLegend("bottomright", pal = colorBin(palette = c(brewer.pal(6, "Oranges")[1], brewer.pal(6, "Oranges")[6]),
                                               domain = filtered2()$pop_growth),
@@ -125,10 +137,7 @@ function(input, output){
                     bringToFront = TRUE),
                   fillColor = ~colorBin(palette = c(brewer.pal(6, "Oranges")[1], brewer.pal(6, "Oranges")[6]),
                                         domain = filtered2()$inc_growth)(inc_growth),
-                  popup = ~paste(sep = "", "<b>", "Region: ", "</b>", PRENAME, "</b><br/>", "<b>", "Income Growth Rate: ", "</b>",
-                                 inc_growth, "%", "</b><br/>", "<b>",
-                                 "Income in ", "</b>", "<b>", input$YearInput, "</b>", "<b>", ": ", "</b>", inc1, "</b><br/>", "<b>",
-                                 "Income in ", "</b>", "<b>", input$YearInput2, "</b>", "<b>", ": ", "</b>", inc2, "</b><br/>")) %>%
+                  label = lapply(filtered2()$labs2, htmltools::HTML)) %>%
       
       addLegend("bottomright", pal = colorBin(palette = c(brewer.pal(6, "Oranges")[1], brewer.pal(6, "Oranges")[6]),
                                               domain = filtered2()$inc_growth),
@@ -163,9 +172,9 @@ function(input, output){
       hc_chart(style = list(fontFamily = 'Calibri', fontSize = 16)) %>%
       
       hc_tooltip(borderColor = "black", style = list(fontFamily = 'Calibri', fontSize = 16, lineHeight = 20),
-                 pointFormat = "<b>{point.name}</b><br>
-                 Population: {point.value:,.0f}<br>
-                 Income Per Capita: ${point.colorValue:,.0f}")
+                 pointFormat = "<b>Region:</b>{point.name}<br>
+                 <b>Population:</b> {point.value:,.0f}<br>
+                 <b>Income Per Capita:</b> ${point.colorValue:,.0f}")
   })
   
   output$table <- DT::renderDataTable({
