@@ -172,7 +172,7 @@ function(input, output){
       hc_chart(style = list(fontFamily = 'Calibri', fontSize = 16)) %>%
       
       hc_tooltip(borderColor = "black", style = list(fontFamily = 'Calibri', fontSize = 16, lineHeight = 20),
-                 pointFormat = "<b>Region:</b>{point.name}<br>
+                 pointFormat = "<b>Region:</b> {point.name}<br>
                  <b>Population:</b> {point.value:,.0f}<br>
                  <b>Income Per Capita:</b> ${point.colorValue:,.0f}")
   })
