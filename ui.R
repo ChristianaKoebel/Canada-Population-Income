@@ -63,11 +63,11 @@ dashboardPage(
       
                  .leaflet-popup-content-wrapper {
                   font-size: 15px;
-                  width: 300px;
+                  width: 250px;
                 }
 
                  .leaflet-popup-content {
-                 width: 350px !important;}
+                 width: 300px !important;}
                  
                  .legend {
                  border-left:2px solid #666666;
@@ -95,13 +95,13 @@ dashboardPage(
                                title = div("Provincial Population and Household Income per Capita", 
                                            style = "font-size:20px; font-weight: bold;"),
                                
-                               tags$p("This interactive tool allows users to
+                               tags$p("This interactive tool allows app users to
                                       examine and compare population and household income per 
                                       capita for each province or territory in Canada from 1999 to 2016.",
                                       br(), br(),
                                       "In the second tab (Map: Population and Household Income Growth in Canada), 
                                       select two years to see the change in population and household income by province/territory.
-                                      Darker colours on the map represent higher rates of change.",
+                                      Darker colours on the map represent higher rates of change in population and average income.",
                                       br(), br(),
                                       "In the third tab, population and household income per capita for 
                                       each province or territory are easily compared through the use of a treemap. 
