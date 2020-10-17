@@ -1,5 +1,7 @@
 # R-Shiny-Dashboard-Canada
 
+Please visit [here](https://christianarkoebel.shinyapps.io/Shiny-Dashboard-Canada/?_ga=2.225870738.92068859.1602961760-1069993223.1602275863) to explore the Shinydashboard.
+
 This is an R Shiny app that visualizes population and household income per capita for Canada's thirteen provinces and territories from 1999 to 2016 in an interactive dashboard. 
 
 The data used in the app comes from Statistics Canada 'Table 36-10-0229-01 Long-run provincial and territorial data' (https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3610022901) and consists of estimates of economic variables including population and average household income in Canada from 1999 to 2016.
