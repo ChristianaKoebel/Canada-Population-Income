@@ -1,4 +1,4 @@
-# R Shiny-Population and Household Income per Capita in Canada
+# R-Shiny-Dashboard-Canada
 
 This is an R Shiny app that visualizes population and household income per capita for Canada's thirteen provinces and territories from 1999 to 2016 in an interactive dashboard. 
 
